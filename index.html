@@ -254,16 +254,16 @@
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span></h2>
 
-      <form action="#">
+      <form name="contact-form">
         <div class="input-box">
-          <input type="text" placeholder="Full Name" />
-          <input type="email" placeholder="Email Address" />
+          <input type="text" placeholder="Full Name"  name="nama"/>
+          <input type="email" placeholder="Email Address"  name="email addres" />
         </div>
         <div class="input-box">
-          <input type="number" placeholder="Mobile Number" />
-          <input type="text" placeholder="Email Subject" />
+          <input type="number" placeholder="Mobile Number"  name="nomor" />
+          <input type="text" placeholder="Email Subject"  name="email subject" />
         </div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+        <textarea cols="30" rows="10" placeholder="Your Message" name="pesan"></textarea>
         <input type="submit" value="Send Message" class="btn" />
       </form>
     </section>
@@ -287,5 +287,17 @@
 
     <!-- custom js -->
     <script src="js/script.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwcVoD-xhD4LenLT7AXJ8FLzuaMbn4FXoWhEgcaLsTj-78uf4bwAssdn9BcyikMEHnm/exec'
+      const form = document.forms['contact-form']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+
   </body>
 </html>
