@@ -720,7 +720,7 @@ span a {
 
   .liquid-shape {
     width: 80%;
-    top: 85%;
+    top: 100%;
     left: 5%;
     position: absolute;
   }
@@ -756,7 +756,7 @@ span a {
   }
   .liquid-shape {
     width: 80%;
-    top: 95%;
+    top: 100%;
     left: 5%;
     position: absolute;
   }
@@ -777,9 +777,9 @@ span a {
 
   .liquid-shape {
     width: 80%;
-    top: 95%;
+    top: 100%;
     left: 5%;
-    position: flex;
+    position: absolute;
   }
 }
 
@@ -797,10 +797,7 @@ span a {
   }
 
   .liquid-shape {
-    width: 80%;
-    top: 80%;
-    left: 5%;
-    position: absolute;
+    display: none;
   }
 
   .footer {
@@ -810,5 +807,11 @@ span a {
   .footer p {
     text-align: center;
     margin-top: 2rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .liquid-shape {
+    display: none;
   }
 }
