@@ -529,6 +529,13 @@ span a {
   color: var(--second-bg-color);
 }
 
+.spinner-border {
+  left: 1rem;
+  top: 1.5rem;
+  right: 2rem;
+  position: relative;
+}
+
 /* keyframe animation */
 
 @keyframes slideRight {

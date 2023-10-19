@@ -9,6 +9,11 @@
     <!-- box icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- boostraps icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -253,8 +258,12 @@
     <!-- contact section design -->
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span></h2>
-
+      
       <form name="contact-form">
+        <div class="alert alert-info alert-dismissible fade show d-none my-alert" role="alert">
+          <strong>Thank's For Contact Me :D</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         <div class="input-box">
           <input type="text" placeholder="Full Name"  name="nama"/>
           <input type="email" placeholder="Email Address"  name="email addres" />
@@ -264,7 +273,10 @@
           <input type="text" placeholder="Email Subject"  name="email subject" />
         </div>
         <textarea cols="30" rows="10" placeholder="Your Message" name="pesan"></textarea>
-        <input type="submit" value="Send Message" class="btn" />
+        <input type="submit" value="Send Message" class="btn btn-kirim" />
+        <div class="spinner-border text-info btn-loading d-none " role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </form>
     </section>
     <!-- footer design -->
@@ -290,11 +302,28 @@
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbwcVoD-xhD4LenLT7AXJ8FLzuaMbn4FXoWhEgcaLsTj-78uf4bwAssdn9BcyikMEHnm/exec'
       const form = document.forms['contact-form']
+      const btnKirim = document.querySelector('.btn-kirim');
+      const btnLoading = document.querySelector('.btn-loading');
+      const myAlert = document.querySelector('.my-alert');
     
       form.addEventListener('submit', e => {
-        e.preventDefault()
+        e.preventDefault();
+        // ketika tombol submit diklik
+        // tampilan tombol loading, hilangkan tombol kirim
+        btnLoading.classList.toggle('d-none');
+        btnKirim.classList.toggle('d-none');
         fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-          .then(response => console.log('Success!', response))
+          .then(response => {
+            // ketika tombol submit diklik
+          // tampikan tombol kirim, hilangkan tombol loading
+            btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+            // Tampilkan alert
+            myAlert.classList.toggle('d-none');
+            //reset form
+            form.reset();
+            console.log('Success!', response)
+          })
           .catch(error => console.error('Error!', error.message))
       })
     </script>
